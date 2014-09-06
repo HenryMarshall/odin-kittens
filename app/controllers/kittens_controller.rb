@@ -13,9 +13,10 @@ class KittensController < ApplicationController
   end
 
   def create
-    kitten = Kitten.new kitten_params
-    if kitten.save
-      redirect_to kitten
+    @kitten = Kitten.new kitten_params
+    if @kitten.save
+      flash[:success] = "Created #{@kitten.name}"
+      redirect_to @kitten
     else
       flash.now[:error] = "Could not create kitten"
       render 'new'
@@ -27,14 +28,21 @@ class KittensController < ApplicationController
   end
 
   def update
-    kitten = Kitten.find(params[:id])
-    kitten.update! kitten_params
-    redirect_to kitten
+    @kitten = Kitten.find(params[:id])
+    @kitten.update kitten_params
+    if @kitten.save
+      flash[:success] = "#{@kitten.name} updated"
+      redirect_to @kitten
+    else
+      flash.now[:error] = "Error updating kitten"
+      render 'edit'
+    end
   end
 
   def destroy
-    kitten = Kitten.find(params[:id]).destroy
-    redirect_to kittens_path, "#{kitten.name} has been deleted"
+    @kitten = Kitten.find(params[:id]).destroy
+    flash[:success] = "#{@kitten.name} has been deleted"
+    redirect_to kittens_path
   end
 
   private
