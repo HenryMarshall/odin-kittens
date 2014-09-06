@@ -1,6 +1,6 @@
 class Kitten < ActiveRecord::Base
-  validate :name, presence: true
-  validate :age, presence: true
-  validate :cuteness, presence: true
-  validate :softness, presence: true
+  validates :name, presence: true
+  validates :age, presence: true
+  validates :cuteness, presence: true
+  validates :softness, presence: true
 end
