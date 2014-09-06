@@ -1,0 +1,21 @@
+%h1 OMG KITTENS!
+
+= link_to "Create a new kitten!", new_kitten_path
+
+%table(border)
+  %tr
+    %th Name
+    %th Age
+    %th Cuteness
+    %th Softness
+    %th
+    %th
+
+  - @kittens.each do |kitten|
+    %tr
+      %td= link_to kitten.name, kitten_path(kitten)
+      %td= kitten.age
+      %td= kitten.cuteness
+      %td= kitten.softness
+      %td= link_to "Edit", edit_kitten_path(kitten)
+      %td= link_to "Delete", kitten_path(kitten), method: :delete

@@ -1,0 +1,15 @@
+%h1= @kitten.name
+
+%table(border)
+  %tr
+    %th Age
+    %td= @kitten.age
+  %tr
+    %th Cuteness
+    %td= @kitten.cuteness
+  %tr
+    %th Softness
+    %td= @kitten.softness
+
+= link_to "Edit", edit_kitten_path(@kitten)
+= link_to "Delete", kitten_path(@kitten), method: :delete
